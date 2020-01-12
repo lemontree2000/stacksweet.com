@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import Link from 'next/link'
 
-import Layout from '../../components/Layout'
+import Layout from '../../components/SSLayout/SSLayout'
 import List from '../../components/List'
 import { User } from '../../interfaces'
 import { sampleFetchWrapper } from '../../utils/sample-api'
@@ -32,7 +32,7 @@ WithInitialProps.getInitialProps = async ({ pathname }) => {
   // Don't forget to include the respective types for any props passed into
   // the component.
   const items: User[] = await sampleFetchWrapper(
-    'https://www.stacksweet.com/api/users'
+    `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.stacksweet.com'}/api/users`
   )
 
   return { items, pathname }
