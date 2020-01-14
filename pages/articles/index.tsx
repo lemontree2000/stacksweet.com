@@ -2,40 +2,24 @@ import { NextPage } from 'next'
 import Link from 'next/link'
 
 import Layout from '../../components/SSLayout/SSLayout'
-import List from '../../components/List'
 import { User } from '../../interfaces'
 import { sampleFetchWrapper } from '../../utils/sample-api'
+import SSArticlesList, { yearsArticele, Props } from '../../components/SSArticlesList/SSArticlesList'
 
-type Props = {
-  items: User[]
-  pathname: string
-}
-
-const WithInitialProps: NextPage<Props> = ({ items, pathname }) => (
+const WithInitialProps: NextPage<Props> = ({ articleList }) => (
   <Layout title="Users List | 蜜栈网">
-    <h1>article List</h1>
-    {/* <p>
-      Example fetching data from inside <code>getInitialProps()</code>.
-    </p> */}
-    <p>You are currently on: {pathname}</p>
-    <List items={items} />
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
+    <SSArticlesList articleList={articleList} />
   </Layout>
 )
 
-WithInitialProps.getInitialProps = async ({ pathname }) => {
+WithInitialProps.getInitialProps = async () => {
   // Example for including initial props in a Next.js function component page.
   // Don't forget to include the respective types for any props passed into
   // the component.
-  const items: User[] = await sampleFetchWrapper(
+  const articleList: yearsArticele[] = await sampleFetchWrapper(
     `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.stacksweet.com'}/api/users`
   )
-
-  return { items, pathname }
+  return { articleList }
 }
 
 export default WithInitialProps
