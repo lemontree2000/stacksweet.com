@@ -5,9 +5,10 @@ import { User } from '../../interfaces'
 import Layout from '../../components/SSLayout/SSLayout'
 import ListDetail from '../../components/ListDetail'
 import { sampleFetchWrapper } from '../../utils/sample-api'
+import { articleItem } from '../../components/SSArticlesList/SSArticlesList'
 
 type Props = {
-    item?: User
+    item?: articleItem
     errors?: string
 }
 
@@ -16,7 +17,7 @@ class InitialPropsDetail extends React.Component<Props> {
         try {
             const { id } = query
             const item = await sampleFetchWrapper(
-                `https://www.stacksweet.com/api/users/${Array.isArray(id) ? id[0] : id}`
+                `${process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://www.stacksweet.com'}/api/users/${Array.isArray(id) ? id[0] : id}`
             )
             return { item }
         } catch (err) {
@@ -40,7 +41,7 @@ class InitialPropsDetail extends React.Component<Props> {
         return (
             <Layout
                 title={`${
-                    item ? item.name : 'User Detail'
+                    item ? item.articleTitle : 'User Detail'
                     } | Next.js + TypeScript Example`}
             >
                 {item && <ListDetail item={item} />}

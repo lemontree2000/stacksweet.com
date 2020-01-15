@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+import { sampleArticleData } from '../../../utils/sample-data'
 
 export default (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const { id } = req.query
-    const selected = sampleUserData.find(data => data.id === Number(id))
+    const selected = sampleArticleData[0].articles.find(data => data.id === Number(id))
     if (!selected) {
       throw new Error('Cannot find user')
     }
