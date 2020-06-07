@@ -18,6 +18,7 @@ const Layout: React.FunctionComponent<Props> = ({
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="preload" href="/fonts/iosevka-regular.woff2" as="font" type="font/woff2"/>
       </Head>
       <header>
         <SSNav />

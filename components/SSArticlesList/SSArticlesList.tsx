@@ -19,7 +19,7 @@ export type articleItem = {
 
 const SSArticleItem: React.FunctionComponent<articleItem> = ({ articleTitle, articleDate, id }) => (
     <article className="article-item">
-        <Link href={`/articles/${id}`}>
+        <Link href='/articles/[id]' as={`/articles/${id}`}>
             <span className="article-title">{articleTitle}</span>
         </Link>
         <span className="article-date">{articleDate}</span>
