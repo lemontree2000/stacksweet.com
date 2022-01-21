@@ -1,10 +1,14 @@
 <script lang="ts" setup>
 import { useRouter } from 'vue-router'
 const router = useRouter()
+console.log(router.getRoutes())
 const routes = router.getRoutes()
     .filter(i => i.path.startsWith('/articles') && i.meta.frontmatter.date)
 
 console.log(routes)
+/**
+ * TODO groupby >> 下面格式
+ */
 const articles = [
     {
         id: '1',
